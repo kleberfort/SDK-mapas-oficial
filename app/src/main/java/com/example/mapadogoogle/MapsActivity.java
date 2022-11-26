@@ -3,6 +3,7 @@ package com.example.mapadogoogle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.mapadogoogle.databinding.ActivityMapsBinding;
@@ -51,6 +53,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng meuLocal = new LatLng(-3.902397, -38.517523);
+
+        //Adicionando um circulo dentro do mapa, onde no centro terá uma marcador
+        //Utilizo o Objeto CircleOptions
+
+        CircleOptions circleOptions = new CircleOptions();
+        circleOptions.center(meuLocal);
+        circleOptions.radius(10); //definido em metros
+        //circleOptions.fillColor(Color.BLUE); //Cor pré-definida da ide
+        circleOptions.fillColor(Color.argb(128, 255, 153,0 )); // 0 a 255 para o ALPHA, preciso definir as cores RGB
+        circleOptions.strokeColor(Color.GREEN); // Posso definir uma cor para a borda ao redor do círculo
+        circleOptions.strokeWidth(10); // Atribui um tamanho da borda
+
+        mMap.addCircle(circleOptions); //Ele adiciona o circulo no mapa
+
+
 
         //Adicionando evento de click no mapa, o evento de onClick
         // o método retorna uma lat e long de onde foi clicado dentro do mapa.
