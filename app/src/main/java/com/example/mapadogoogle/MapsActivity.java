@@ -8,6 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.mapadogoogle.databinding.ActivityMapsBinding;
@@ -43,6 +44,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        //Mudar a exibição do Mapa, utilizo o método setMapType.
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
         // Add a marker in Sydney and move the camera
         LatLng meuLocal = new LatLng(-3.902397, -38.517523);
 
@@ -50,16 +54,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // o método addMarker, adiciona um marcador dentro do mapa.
 
+
+        /*  Posso alterar a cor do marcador, utilizo o método .icon que recebe um BitmapDescriptorFactory
+                        .icon(
+                                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)
+                            )
+
+
+         */
+
+        /* Podemos também utilizar uma imagem no lugar do marcador, usando o mesmo método .icon, o método específico
+        é fromResource para acessar as imagens da pasta drawable.
+
+            .icon(
+            BitmapDescriptorFactory.fromResource(R.drawable.carro)
+                )
+
+
+         */
+
         mMap.addMarker(
                  new MarkerOptions()
                         .position(meuLocal)
                         .title("Meu Local")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.carro))
+                         /*.icon(
+                                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)
+                        )
+
+                          */
         );
 
         // o Método newLatLng exibe um zoom padrão, que requer apenas um lat e long.
         // o Método new LatLngZoom, esse método conseguimos definir um zoom ao abrir o aplicativo.
         mMap.moveCamera(// 2.0 até 21.0
-                CameraUpdateFactory.newLatLngZoom(meuLocal, 15)
+                CameraUpdateFactory.newLatLngZoom(meuLocal, 19)
         );
 
 
