@@ -1,8 +1,10 @@
 package com.example.mapadogoogle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -49,6 +51,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng meuLocal = new LatLng(-3.902397, -38.517523);
+
+        //Adicionando evento de click no mapa, o evento de onClick
+        // o método retorna uma lat e long de onde foi clicado dentro do mapa.
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull LatLng latLng) {
+
+                Double latitude = latLng.latitude;
+                Double longitude = latLng.longitude;
+
+                Toast.makeText(MapsActivity.this,
+                        "onClick Lat: " + latitude + " long: " + longitude, Toast.LENGTH_LONG).show();
+
+                //Será adicionado um marcador a cada click na tela
+
+                mMap.addMarker(
+                        new MarkerOptions()
+                        .position(latLng)
+                        .title("local")
+                        .snippet("Descrição") //Colocamos uma descrição também
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.storefront))
+                );
+
+
+            }
+        });
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(@NonNull LatLng latLng) {
+
+                Double latitude = latLng.latitude;
+                Double longitude = latLng.longitude;
+
+                Toast.makeText(MapsActivity.this,
+                        "onLong Lat: " + latitude + " long: " + longitude, Toast.LENGTH_LONG).show();
+
+                //Será adicionado um marcador a cada click Long na tela
+
+                mMap.addMarker(
+                        new MarkerOptions()
+                                .position(latLng)
+                                .title("local")
+                                .snippet("Descrição") //Colocamos uma descrição também
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.carro2))
+                );
+
+            }
+        });
 
         //-3.902397, -38.517523
 
