@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.mapadogoogle.databinding.ActivityMapsBinding;
+import com.google.android.gms.maps.model.PolygonOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -57,6 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Adicionando um circulo dentro do mapa, onde no centro terá uma marcador
         //Utilizo o Objeto CircleOptions
 
+        /*
         CircleOptions circleOptions = new CircleOptions();
         circleOptions.center(meuLocal);
         circleOptions.radius(10); //definido em metros
@@ -64,8 +66,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         circleOptions.fillColor(Color.argb(128, 255, 153,0 )); // 0 a 255 para o ALPHA, preciso definir as cores RGB
         circleOptions.strokeColor(Color.GREEN); // Posso definir uma cor para a borda ao redor do círculo
         circleOptions.strokeWidth(10); // Atribui um tamanho da borda
-
         mMap.addCircle(circleOptions); //Ele adiciona o circulo no mapa
+
+         */
+
+        //-3.902275632031424, -38.51759127783987
+        //-3.902023566952254, -38.51751841941137
+        //-3.9021760155450838, -38.5169990781108
+        //-3.902429604691061, -38.51706726995146
+        /*Adicionando Polígonos dentro do mapa, usando o Objeto PolygonOptions, com o método add vou adicionando linhas ou seja vou
+        desenhando a forma. Esse Objetos fornce os meus métodos do Objeto CircleOptions para definir cor de borda, largura, cor de fundo etc.
+
+         */
+
+        PolygonOptions polygonOptions = new PolygonOptions();
+        polygonOptions.add(new LatLng(-3.902275632031424, -38.51759127783987));
+        polygonOptions.add(new LatLng(-3.902023566952254, -38.51751841941137));
+        polygonOptions.add(new LatLng(-3.9021760155450838, -38.5169990781108));
+        polygonOptions.add(new LatLng(-3.902429604691061, -38.51706726995146));
+        polygonOptions.strokeColor(Color.GREEN);
+        polygonOptions.strokeWidth(10);
+        polygonOptions.fillColor(Color.argb(128, 255, 153, 0));
+        mMap.addPolygon(polygonOptions);
+
 
 
 
